@@ -3,45 +3,66 @@
 @section('title', 'Edit Job: ' . $work->title)
 
 @section('content')
-    <h1 class="text-center">{{ $work->title }}</h1>
+    <div class="min-h-screen flex justify-center items-center bg-gray-100">
+        <div class="bg-gray-800 text-white p-6 w-full max-w-md rounded-lg shadow-md">
+            <h1 class="text-2xl font-bold text-center mb-4">Edit Job: {{ $work->title }}</h1>
 
-    <div class="flex justify-center mt-5">
-        <div class="flex flex-col gap-3 bg-red-900 w-[400px] h-fit p-5 rounded-lg">
+            <!-- Error Messages -->
             @if ($errors->any())
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+                <div class="bg-red-700 text-white p-3 rounded mb-4">
+                    <ul class="list-disc pl-5">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             @endif
 
-            <form action="{{ route('works.update', $work->id) }}" method="POST" class="flex flex-col gap-2">
+            <!-- Edit Job Form -->
+            <form action="{{ route('works.update', $work->id) }}" method="POST" class="flex flex-col gap-4">
                 @csrf
                 @method('PUT')
 
-                <div class="flex flex-col gap-1">
-                    <label for="title">Work Title:</label><br>
-                    <input type="text" name="title" value="{{ old('title', $work->title) }}" required class="p-2"><br>
+                <!-- Job Title -->
+                <div>
+                    <label for="title" class="block font-bold mb-1">Job Title:</label>
+                    <input type="text" name="title" id="title" value="{{ old('title', $work->title) }}" required
+                        class="w-full p-2 text-black border-2 border-gray-300 rounded focus:outline-none focus:ring focus:ring-red-500"
+                        placeholder="Enter job title">
                 </div>
 
-                <div class="flex flex-col gap-1">
-                    <label for="description">Work Description:</label><br>
-                    <textarea name="description" required class="p-2">{{ old('description', $work->description) }}</textarea><br>
+                <!-- Job Description -->
+                <div>
+                    <label for="description" class="block font-bold mb-1">Job Description:</label>
+                    <textarea name="description" id="description" required
+                        class="w-full p-2 text-black border-2 border-gray-300 rounded focus:outline-none focus:ring focus:ring-red-500"
+                        rows="4" placeholder="Enter job description">{{ old('description', $work->description) }}</textarea>
                 </div>
 
-                <div class="flex flex-col gap-1">
-                    <label for="company">Company:</label><br>
-                    <input type="text" name="company" value="{{ old('company', $work->company) }}" required
-                        class="p-2"><br>
+                <!-- Company -->
+                <div>
+                    <label for="company" class="block font-bold mb-1">Company:</label>
+                    <input type="text" name="company" id="company" value="{{ old('company', $work->company) }}"
+                        required
+                        class="w-full p-2 text-black border-2 border-gray-300 rounded focus:outline-none focus:ring focus:ring-red-500"
+                        placeholder="Enter company name">
                 </div>
 
-                <div class="flex flex-col gap-1">
-                    <label for="location">Location:</label><br>
-                    <input type="text" name="location" value="{{ old('location', $work->location) }}" required
-                        class="p-2"><br>
+                <!-- Location -->
+                <div>
+                    <label for="location" class="block font-bold mb-1">Location:</label>
+                    <input type="text" name="location" id="location" value="{{ old('location', $work->location) }}"
+                        required
+                        class="w-full p-2 text-black border-2 border-gray-300 rounded focus:outline-none focus:ring focus:ring-red-500"
+                        placeholder="Enter job location">
                 </div>
 
-                <button type="submit" class="bg-white text-black font-bold p-2 mt-3">Update Work</button>
+                <!-- Submit Button -->
+                <button type="submit"
+                    class="bg-white text-red-900 font-bold py-2 px-4 rounded hover:bg-gray-200 transition text-center mt-4">
+                    Update Job
+                </button>
             </form>
         </div>
-</div>@endsection
+    </div>
+@endsection

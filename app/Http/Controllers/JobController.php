@@ -19,7 +19,7 @@ class JobController extends Controller
             $works = Job::where('title', 'like', '%' . $request->search . '%')
                 ->orWhere('company', 'like', '%' . $request->search . '%')
                 ->orWhere('location', 'like', '%' . $request->search . '%')
-                ->paginate(5);
+                ->paginate(6);
         } // Display 5 jobs per page
         return view('works.index', compact('works'));
     }
@@ -77,7 +77,7 @@ class JobController extends Controller
         ]);
 
         $work->update($validatedData);
-        return redirect()->route('works.index')->with('success', 'Job updated successfully!');
+        return back()->with('success', 'Job updated successfully!');
     }
     /**
      * Remove the specified job from the database.
@@ -86,5 +86,9 @@ class JobController extends Controller
     {
         $work->delete();
         return redirect()->route('works.index')->with('success', 'Job deleted successfully!');
+    }
+    public function manage(Job $work)
+    {
+        return view('works.manage', compact('work'));
     }
 }

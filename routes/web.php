@@ -1,27 +1,28 @@
 <?php
 
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-// Route to show all works (jobs)
+// Home page route
+Route::get('/', [JobController::class, 'index']);
 
-Route::resource('works', JobController::class);
+// Route to manage works (jobs) — this seems like an admin route
+Route::get('/works/manage', [JobController::class, 'manage'])->name('manage')->middleware('auth');
 
-// Route::get('/works', [JobController::class, 'index'])->name('works.index');
+// User authentication routes
+Route::get('users/login', [UserController::class, 'login_show']);
+Route::get('users/register', [UserController::class, 'register_show']);
+Route::post('users/login', [UserController::class, 'login'])->name('login');
+Route::post('users/register', [UserController::class, 'register'])->name('register');
+Route::post('users/logout', [UserController::class, 'logout'])->name('logout');
 
-// // Route to show a single job (work)
-// Route::get('/works/{job}', [JobController::class, 'show'])->name('works.show');
-
-// // Route to display the job creation form
-// Route::get('/works/create', [JobController::class, 'create'])->name('works.create');
-// // Route to store a new job
-// Route::post('/works', [JobController::class, 'store'])->name('works.store');
-
-// // Route to display the job editing form
-// Route::get('/works/{job}/edit', [JobController::class, 'edit'])->name('works.edit');
-
-// // Route to update an existing job
-// Route::put('/works/{job}', [JobController::class, 'update'])->name('works.update');
-
-// // Route to delete a job
-// Route::delete('/works/{job}', [JobController::class, 'destroy'])->name('works.destroy');
+// Job routes
+Route::get('/works/create', [JobController::class, 'create'])->name('works.create')->middleware('auth');
+Route::get('/works', [JobController::class, 'index'])->name('works.index'); // List all jobs
+Route::get('/works/{work}', [JobController::class, 'show'])->name('works.show'); // Show a single job
+// Create a job form
+Route::post('/works', [JobController::class, 'store'])->name('works.store')->middleware('auth'); // Store a new job
+Route::get('/works/{work}/edit', [JobController::class, 'edit'])->name('works.edit')->middleware('auth'); // Edit a job form
+Route::put('/works/{work}', [JobController::class, 'update'])->name('works.update')->middleware('auth'); // Update a job
+Route::delete('/works/{work}', [JobController::class, 'destroy'])->name('works.destroy')->middleware('auth'); // Delete a job
