@@ -87,8 +87,9 @@ class JobController extends Controller
         $work->delete();
         return redirect()->route('works.index')->with('success', 'Job deleted successfully!');
     }
-    public function manage(Job $work)
+    public function manage()
     {
-        return view('works.manage', compact('work'));
+        $works = Job::all(); // Fetch all jobs without pagination
+        return view('works.manage', compact('works'));
     }
 }

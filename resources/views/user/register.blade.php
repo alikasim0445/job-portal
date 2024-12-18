@@ -7,7 +7,7 @@
         @csrf
 
         <!-- Name -->
-        <div>
+        <div class="text-black">
             <label for="name" :value="__('Name')">Name</label>
             <input id="name" class="block mt-1 w-full p-1" type="text" name="name" :value="old('name')" required
                 autofocus autocomplete="name" value="{{ old('name') }}" />
@@ -17,7 +17,7 @@
         </div>
 
         <!-- Email Address -->
-        <div class="mt-4">
+        <div class="mt-4 text-black">
             <label for="email" :value="__('Email')">Email</label>
             <input id="email" class="block mt-1 w-full p-1" type="email" name="email" :value="old('email')"
                 required autocomplete="username" value="{{ old('email') }}" />
@@ -27,7 +27,7 @@
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
+        <div class="mt-4 text-black">
             <label for="password" :value="__('Password')">Password</label>
 
             <input id="password" class="block mt-1 w-full p-1" type="password" name="password" required
@@ -39,7 +39,7 @@
         </div>
 
         <!-- Confirm Password -->
-        <div class="mt-4">
+        <div class="mt-4 text-black">
             <label for="password_confirmation" :value="__('Confirm Password')">Confirm Password</label>
 
             <input id="password_confirmation" class="block mt-1 w-full p-1" type="password" name="password_confirmation"

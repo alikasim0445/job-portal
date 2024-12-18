@@ -11,11 +11,11 @@ Route::get('/', [JobController::class, 'index']);
 Route::get('/works/manage', [JobController::class, 'manage'])->name('manage')->middleware('auth');
 
 // User authentication routes
-Route::get('users/login', [UserController::class, 'login_show']);
-Route::get('users/register', [UserController::class, 'register_show']);
+Route::get('users/login', [UserController::class, 'login_show'])->middleware('guest');
+Route::get('users/register', [UserController::class, 'register_show'])->middleware('guest');
 Route::post('users/login', [UserController::class, 'login'])->name('login');
-Route::post('users/register', [UserController::class, 'register'])->name('register');
-Route::post('users/logout', [UserController::class, 'logout'])->name('logout');
+Route::post('users/register', [UserController::class, 'register'])->name('register')->middleware('guest');
+Route::post('users/logout', [UserController::class, 'logout'])->name('logout')->middleware('auth');
 
 // Job routes
 Route::get('/works/create', [JobController::class, 'create'])->name('works.create')->middleware('auth');

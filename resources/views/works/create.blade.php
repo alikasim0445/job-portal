@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="min-h-screen flex justify-center items-center bg-gray-100">
-        <div class="bg-red-900 text-white p-6 w-full max-w-md rounded-lg shadow-md">
+        <div class="bg-gray-800 text-white p-6 w-full max-w-md rounded-lg shadow-md">
             <h1 class="text-2xl font-bold text-center mb-4">Post a New Job</h1>
 
             <!-- Error Messages -->

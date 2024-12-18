@@ -7,7 +7,7 @@
         @csrf
 
         <!-- Email Address -->
-        <div class="mt-4">
+        <div class="mt-4 text-black">
             <label for="email" :value="__('Email')">Email</label>
             <input id="email" class="block mt-1 w-full p-1" type="email" name="email" :value="old('email')" required
                 autocomplete="username" value="{{ old('email') }}" />
@@ -17,7 +17,7 @@
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
+        <div class="mt-4 text-black">
             <label for="password" :value="__('Password')">Password</label>
 
             <input id="password" class="block mt-1 w-full p-1" type="password" name="password" required
