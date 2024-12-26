@@ -15,7 +15,7 @@
                     <tr>
                         <td class="border border-gray-300 px-4 py-2">{{ $work->title }}</td>
                         <td class="border border-gray-300 px-4 py-2 text-center">
-                            <a href="{{ route('works.edit', $work->id) }}" class="text-blue-500 hover:underline">
+                            <a href="{{ route('works.edit', $work->id) }}" class="text-blue-500 hover:underline bg-cyan-500">
                                 <i class="fa-solid fa-pencil"></i> Edit
                             </a>
                         </td>

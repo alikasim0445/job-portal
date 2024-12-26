@@ -22,7 +22,8 @@
                         <!-- Job Title -->
                         <h3 class="text-2xl font-bold mb-2">
                             <a href="{{ route('works.show', $work->id) }}" class="hover:underline">
-                                {{ $work->title }}
+                                {{ strtoupper($work->title) }}
+
                             </a>
                         </h3>
 
@@ -37,12 +38,17 @@
                         </div>
 
                         <!-- Actions -->
-                        <div class="mt-4">
+                        <div class="mt-4 flex flex-row justify-between">
                             <a href="{{ route('works.show', $work->id) }}"
                                 class="text-sm bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600 transition">
                                 View Details
                             </a>
+                            <a href="{{ route('job_applicants.create', $work->id) }}"
+                                class="text-sm bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600 transition">
+                                Apply
+                            </a>
                         </div>
+
                     </div>
                 @endforeach
             </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JobApplicantController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +27,9 @@ Route::post('/works', [JobController::class, 'store'])->name('works.store')->mid
 Route::get('/works/{work}/edit', [JobController::class, 'edit'])->name('works.edit')->middleware('auth'); // Edit a job form
 Route::put('/works/{work}', [JobController::class, 'update'])->name('works.update')->middleware('auth'); // Update a job
 Route::delete('/works/{work}', [JobController::class, 'destroy'])->name('works.destroy')->middleware('auth'); // Delete a job
+
+Route::get('/works/{work}/applicants', [JobApplicantController::class, 'index'])->name('job_applicants.index');
+Route::get('/works/{work}/apply', [JobApplicantController::class, 'create'])->name('job_applicants.create');
+Route::post('/works/{work}/apply', [JobApplicantController::class, 'store'])->name('job_applicants.store');
+
+Route::delete('/applicants/{id}', [JobApplicantController::class, 'destroy'])->name('job_applicants.destroy');
